@@ -89,14 +89,23 @@ class DesktopCommands:
         if msg.startswith("!type"):
             content = msg[len("!type "):]
             self.type_to_desktop(content)
+
+            file, embed = self.screenshot_and_embed()
+            await message.channel.send(embed=embed, file=file)
             
         # handle keypress commmand    
         if msg.startswith("!press"):
             content = msg[len("!press "):]
             self.key_press(content)
+
+            file, embed = self.screenshot_and_embed()
+            await message.channel.send(embed=embed, file=file)
             
         if msg == "!click" or msg == "!c":
             pyautogui.click()
+
+            file, embed = self.screenshot_and_embed()
+            await message.channel.send(embed=embed, file=file)
         
         # handle mouse move command    
         if msg.startswith("!mouse"):
@@ -104,4 +113,7 @@ class DesktopCommands:
             coords = content.split(" ")
             print(coords)
             self.move_mouse(coords)
+
+            file, embed = self.screenshot_and_embed()
+            await message.channel.send(embed=embed, file=file)
     
